@@ -35,7 +35,32 @@ class Expression(var infixExpression: MutableList<String>) {
         }
     }
 
-    fun evaluateExpressions(): Double {
-        return 0.0
+    fun evaluateExpressions(postfix: String): Double {
+        val stack = Stack<Double>()
+        var i = 0
+        while (i < postfix.length) {
+            if (postfix[i] == ' ') {
+                i++
+                continue
+            } else if (Character.isDigit(postfix[i])) {
+                var number = ""
+                while (Character.isDigit(postfix[i]) || postfix[i] == '.') {
+                    number += postfix[i]
+                    i++
+                }
+                stack.push(number.toDouble())
+            } else {
+                val x = stack.pop()
+                val y = stack.pop()
+                when (postfix[i]) {
+                    '*' -> stack.push(x * y)
+                    '/' -> stack.push(x / y)
+                    '+' -> stack.push(x + y)
+                    '-' -> stack.push(x - y)
+                }
+            }
+            i++
+        }
+        return if (stack.peek() / stack.peek().toInt() == 1.0) stack.peek().toInt() else stack.peek()
     }
 }
