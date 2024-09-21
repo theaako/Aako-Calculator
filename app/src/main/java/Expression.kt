@@ -22,8 +22,9 @@ class Expression(var infixExpression: MutableList<String>) {
                 }
             }
         }
-        while(stack.isNotEmpty())
-        result += "${stack.pop()} "
+        while(stack.isNotEmpty()) {
+            result += "${stack.pop()} "
+        }
         return result
     }
 
@@ -35,7 +36,7 @@ class Expression(var infixExpression: MutableList<String>) {
         }
     }
 
-    fun evaluateExpressions(postfix: String): Double {
+    fun evaluateExpressions(postfix: String): Number {
         val stack = Stack<Double>()
         var i = 0
         while (i < postfix.length) {
