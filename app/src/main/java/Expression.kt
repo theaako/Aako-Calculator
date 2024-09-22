@@ -1,7 +1,13 @@
+import android.util.Log
 import java.util.Stack
+import kotlin.math.log
 
 class Expression(var infixExpression: MutableList<String>) {
-    private fun infixToPostfix(): String {
+
+    private var postfix = ""
+
+    private fun infixToPostfix() {
+        Log.d("infixToPostfixFun1", "infixExpression is: $infixExpression")
         var result = ""
         val stack = Stack<String>()
         for (element in infixExpression) {
@@ -25,7 +31,8 @@ class Expression(var infixExpression: MutableList<String>) {
         while(stack.isNotEmpty()) {
             result += "${stack.pop()} "
         }
-        return result
+        postfix = result
+        Log.d("infixToPostfixFun2", "result is: $result")
     }
 
     private fun operatorPrecedence(operator: String): Int {
@@ -36,7 +43,8 @@ class Expression(var infixExpression: MutableList<String>) {
         }
     }
 
-    fun evaluateExpressions(postfix: String): Number {
+    fun evaluateExpressions(): Number {
+        infixToPostfix()
         val stack = Stack<Double>()
         var i = 0
         while (i < postfix.length) {
