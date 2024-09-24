@@ -1,8 +1,9 @@
 import java.util.*
 import kotlin.math.pow
 
-class Expressions(var infix: MutableList<String>) {
+class Expressions(infix: MutableList<String>) {
 
+    private var infix = infix
 
     private fun infixToPostfix() {
         var postfix = ""
