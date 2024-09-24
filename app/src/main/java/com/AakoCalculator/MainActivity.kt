@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             }
             else -> {input.add(buttonText)
                 resultTextBox?.text = "${resultTextBox?.text} ${button.text}"
-            }
+            3646}
         }
     }
 }
