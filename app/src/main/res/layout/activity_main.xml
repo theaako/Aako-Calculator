@@ -30,7 +30,7 @@
         android:background="@drawable/circular_button_1"
         android:fontFamily="sans-serif-light"
         android:onClick="onClick"
-        android:text="⌫ "
+        android:text="⌫"
         android:textSize="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/number0BTN"

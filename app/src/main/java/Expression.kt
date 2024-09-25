@@ -6,6 +6,7 @@ class Expressions(infix: MutableList<String>) {
     private var infix = infix
 
     private fun infixToPostfix() {
+
         var postfix = ""
         var stack = Stack<String>()
 
@@ -32,8 +33,10 @@ class Expressions(infix: MutableList<String>) {
         }
     }
 
-    fun evaluation(postfix: String): Number {
-        var stack = Stack<Double>()
+    fun evaluation(): Number {
+
+        val stack = Stack<Double>()
+        val postfix = ""
         var i = 0
 
         while (i <= postfix.length) {
@@ -61,7 +64,7 @@ class Expressions(infix: MutableList<String>) {
                 i++
             }
         }
-        return if(stack.peek() / stack.peek().toInt() == 1.0) stack.pop().toInt() else stack.pop()
+        return if (stack.peek() / stack.peek().toInt() == 1.0) stack.pop().toInt() else stack.pop()
     }
 
     private fun precedence(operator: String): Byte {

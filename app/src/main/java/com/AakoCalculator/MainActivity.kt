@@ -1,6 +1,6 @@
 package com.AakoCalculator
 
-import Expression
+import Expressions
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 class MainActivity : AppCompatActivity() {
     private val input = mutableListOf<String>()
     private var resultTextBox: TextView? = null
-    private var infixExpression: Expression? = null
+    private var infixExpression: Expressions? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,15 +28,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onClick(button: View) {
-        val buttonText  = (button as AppCompatButton).text.toString()
+        val buttonText = (button as AppCompatButton).text.toString()
         when (buttonText) {
             "=" -> {
-                infixExpression = Expression(input)
-                resultTextBox?.text = infixExpression!!.evaluateExpressions().toString()
+                infixExpression = Expressions(input)
+                resultTextBox?.text = infixExpression!!.evaluation().toString()
             }
-            else -> {input.add(buttonText)
-                resultTextBox?.text = "${resultTextBox?.text} ${button.text}"
-            3646}
+            "CL" -> {
+                input.clear()
+                resultTextBox?.text = ""
+            }
+            "⌫" -> {
+                resultTextBox?.text = "${resultTextBox?.text}".dropLast(2)
+                input.remove(input.last())
+            }
+            else -> {
+                if(Character.isDigit(buttonText[0])) {
+                    if (input.isNotEmpty() && Character.isDigit(input.last()[0])) {
+                        resultTextBox?.text = "${resultTextBox?.text}${button.text}"
+                    } else {
+                        input.add(buttonText)
+                        resultTextBox?.text = "${resultTextBox?.text} ${button.text}"
+                    }
+                } else {
+                    input.add(buttonText)
+                    resultTextBox?.text = "${resultTextBox?.text} ${button.text}"
+                }
+            }
         }
     }
 }
