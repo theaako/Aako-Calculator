@@ -1,4 +1,4 @@
-package com.AakoCalculator
+package aakoCalculator.AakoCalculator
 
 import org.junit.Test
 

@@ -4,6 +4,7 @@ import kotlin.math.pow
 class Expressions(infix: MutableList<String>) {
 
     private var infix = infix
+    private var postfix = ""
 
     private fun infixToPostfix() {
 
@@ -35,8 +36,9 @@ class Expressions(infix: MutableList<String>) {
 
     fun evaluation(): Number {
 
+        infixToPostfix()
+
         val stack = Stack<Double>()
-        val postfix = ""
         var i = 0
 
         while (i <= postfix.length) {
