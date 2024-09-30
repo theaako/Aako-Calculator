@@ -1,8 +1,8 @@
 package aakoCalculator
 
 import Expressions
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         resultTextBox = findViewById(R.id.resultTextView)
     }
 
+    @SuppressLint("SetTextI18n")
     fun onClick(button: View) {
         when (val buttonText= (button as AppCompatButton).text.toString()) {
             "=" -> {
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity() {
                 resultTextBox?.text = infixExpression!!.evaluation().toString()
                 input.clear()
                 input.add(resultTextBox?.text.toString())
+                //Log.d("1","What the fuck is wrong? ${onClick(button)}")
             }
 
             "C" -> {

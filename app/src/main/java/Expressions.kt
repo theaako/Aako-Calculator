@@ -1,3 +1,4 @@
+import android.util.Log
 import java.util.*
 import kotlin.math.pow
 
@@ -9,7 +10,7 @@ class Expressions(infix: MutableList<String>) {
     private fun infixToPostfix() {
 
         var postfix = ""
-        var stack = Stack<String>()
+        val stack = Stack<String>()
 
         for (e in infix) {
             if (e.all { it.isDigit() || it == '.' }) {
@@ -56,12 +57,12 @@ class Expressions(infix: MutableList<String>) {
                 val a = stack.pop()
                 val b = stack.pop()
                 when (postfix[i]) {
-                    '+' -> stack.push(b + a)
-                    '-' -> stack.push(b - a)
-                    '*' -> stack.push(b * a)
-                    '/' -> stack.push(b / a)
-                    '%' -> stack.push(b % a)
-                    '^' -> stack.push(b.pow(a))
+                    '＋' -> stack.push(b + a)  //addition
+                    '—' -> stack.push(b - a)  //subtraction
+                    'X' -> stack.push(b * a)  //multiplication
+                    '÷' -> stack.push(b / a)  //division
+                    '%' -> stack.push(b % a)  //modulus
+                    '^' -> stack.push(b.pow(a))  //power
                 }
                 i++
             }
@@ -71,8 +72,8 @@ class Expressions(infix: MutableList<String>) {
 
     private fun precedence(operator: String): Byte {
         return when (operator) {
-            "+", "-" -> 1
-            "*", "/", "%" -> 2
+            "＋", "—" -> 1
+            "X", "÷", "%" -> 2
             "^" -> 3
             else -> 0
         }
